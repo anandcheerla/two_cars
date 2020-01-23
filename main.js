@@ -20,7 +20,7 @@ function rock(x,y,img,id,lane){
 // ancestor,so that rock will always come from top
 
 rock.prototype.setUp=function(left_gap){
-	this.ele=$("<img src="+this.img+" id="+this.id+" height=60 width=120>");
+	this.ele=$("<img src="+this.img+" id="+this.id+" class=rock height=60 width=120>");
 	$(this.lane).append(this.ele);
 	this.ele.css({position:"absolute",left:left_gap+"px"});
 	
@@ -50,7 +50,7 @@ function car(x,y,img,id,lane){
 
 
 car.prototype.setUp=function(){
-	this.ele=$("<img src="+this.img+" id="+this.id+" height=100 width=120>");
+	this.ele=$("<img src="+this.img+" id="+this.id+" class=car height=100 width=100>");
 	$(this.lane).append(this.ele);
 	//position set as relative so that car will move
 	this.ele.css({position:"relative"});
@@ -123,10 +123,13 @@ let lane4rock=function(){
 
 //interval logic so that two rocks come beside each other,
 var gap=800;
+var movement=1;
+
 var interval=function(){
 	lane1rock();
 	var temp=Math.floor(gap+Math.random()*(2*gap));
-	setTimeout(interval2,temp);
+	if(movement)
+		setTimeout(interval2,temp);
 	
 }
 interval();
@@ -143,7 +146,8 @@ function interval2(){
 var interval3=function(){
 	lane3rock();
 	var temp=Math.floor(gap+Math.random()*(2*gap));
-	setTimeout(interval4,temp);
+	if(movement)
+		setTimeout(interval4,temp);
 }
 interval3();
 
@@ -158,6 +162,41 @@ function interval4(){
 
 //---------------------------------------------------------------------------------------------------------
 
+function hits(){
+	$(".car").each(function(){
+		var car=$(this);
+			$(".rock").each(function(){
+				var rock=$(this);
+				
+				rock_left=rock.position().left;
+				rock_top=rock.position().top;
+				
+				car_left=car.position().left;
+				car_top=car.position().top;
+				
+				
+				if(rock_top+60>car_top && (rock_left<=car_left && car_left<rock_left+120)){
+					
+					car.attr("src","./images/car_smashed_1.png");
+					movement=0;
+					rock.stop();
+					
+				}
+			});
+			
+		
+		
+	});
+	
+	
+	setTimeout(hits,200);	
+	
+}
+hits();
+
+
+
+//---------------------------------------------------------------------------------------------------------
 
 //key event listening so that cars move in a toggle fashion
 let flag=0,flag2=0;	
