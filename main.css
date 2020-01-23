@@ -1,0 +1,63 @@
+#board{
+	
+	margin-left: 350px;
+	margin-right: 350px;
+	height: 600px;
+	width: 524px;
+	background-color: black;
+}
+
+#leftlanes{
+	border:1px solid white;
+	height:600px;
+	width:260px;
+	float:left;
+	position:relative;
+	
+	
+	
+}
+
+#lane1{
+	border:1px solid white;
+	height:600px;
+	width:128px;
+	float:left;
+	
+}
+
+#lane2{
+	border:1px solid white;
+	height:600px;
+	width:128px;
+	overflow: hidden;
+}
+
+#rightlanes{
+	border:1px solid white;
+	height:600px;
+	width:260px;
+	overflow:hidden;
+	position:relative;
+		
+}
+
+#lane3{
+	border:1px solid white;
+	height:600px;
+	width:128px;
+	float:left;
+}
+
+#lane4{
+	border:1px solid white;
+	height:600px;
+	width:128px;
+	overflow: hidden;
+}
+
+
+
+
+
+
