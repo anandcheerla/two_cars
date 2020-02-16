@@ -6,11 +6,12 @@
 // lane,which lane it belongs
 // ele to store the jquery element that will be appended to the board
 
-function rock(x,y,img,id,lane){
+function rock(x,y,img,id,class_name,lane){
 	this.x=x;
 	this.y=y;
 	this.img=img;
 	this.id=id;
+	this.class_name=class_name;
 	this.lane=lane;
 	this.ele=null;
 }
@@ -20,7 +21,7 @@ function rock(x,y,img,id,lane){
 // ancestor,so that rock will always come from top
 
 rock.prototype.setUp=function(left_gap){
-	this.ele=$("<img src="+this.img+" id="+this.id+" class='rock' height=60 width=123>");
+	this.ele=$("<img src="+this.img+" id="+this.id+" class="+this.class_name+" height=60 width=123>");
 	$(this.lane).append(this.ele);
 	this.ele.css({position:"absolute",left:left_gap+"px"});
 	
@@ -76,35 +77,36 @@ car2.setUp();
 var speed=2000;
 var speed_counter=speed;
 var maxspeed=600;
+var iter=20;
 
 //rock creation on lane one and animate the rock
 let lane1rock=function(){
-		var rock1=new rock(0,0,"./images/rock_1.png","rock1","#lane1");
+		var rock1=new rock(0,0,"./images/rock_1.png","rock1","rocks1and2","#lane1");
 		rock1.setUp(1);
-		rock1.move(speed);
+		rock1.move(speed_counter);
 		// console.log($("#rock1").position().left);
-		speed_counter-=10;
+		speed_counter-=iter;
 		if(speed_counter<maxspeed)
 			speed_counter=speed;
 };
 
 //rock creation on lane two and animate the rock
 let lane2rock=function(){
-		var rock2=new rock(0,0,"./images/rock_2.svg","rock2","#lane2");
+		var rock2=new rock(0,0,"./images/rock_2.svg","rock2","rocks1and2","#lane2");
 		rock2.setUp(126);
-		rock2.move(speed);
+		rock2.move(speed_counter);
 		// console.log($("#rock2").position().left);
-		speed_counter-=10;
+		speed_counter-=iter;
 		if(speed_counter<maxspeed)
 			speed_counter=speed;
 };
 
 //rock creation on lane three and animate the rock
 let lane3rock=function(){
-		var rock3=new rock(0,0,"./images/rock_3.png","rock3","#lane3");
+		var rock3=new rock(0,0,"./images/rock_3.png","rock3","rocks3and4","#lane3");
 		rock3.setUp(1);
-		rock3.move(speed);
-		speed_counter-=10;
+		rock3.move(speed_counter);
+		speed_counter-=iter;
 		if(speed_counter<maxspeed)
 			speed_counter=speed;
 
@@ -112,10 +114,10 @@ let lane3rock=function(){
 
 //rock creation on lane four and animate the rock
 let lane4rock=function(){
-		var rock4=new rock(0,0,"./images/rock_4.png","rock4","#lane4");
+		var rock4=new rock(0,0,"./images/rock_4.png","rock4","rocks3and4","#lane4");
 		rock4.setUp(126);
-		rock4.move(speed);
-		speed_counter-=10;
+		rock4.move(speed_counter);
+		speed_counter-=iter;
 		if(speed_counter<maxspeed)
 			speed_counter=speed;
 
@@ -169,41 +171,34 @@ function interval4(){
 
 function hits(){
 
-	// $("#car1")
-	$(".car").each(function(){
-		var car=$(this);
-			// console.log(car);
-			// console.log(document.querySelectorAll('.rock'));
-			// console.log($(".rock"));
-			$(".rock").each(function(){
-				var rock=$(this);
-			// 	console.log(rock);
-				
-				//console.log(Object.keys(rock));
-				
+	let car=$("#car1");
+
+	if(!movement){
+				$(".rocks1and2").stop();
+				$(".rocks3and4").stop();
+	}
+
+	$(".rocks1and2").each(function(){
+				let rock=$(this);
+
 				rock_left=rock.position().left;
 				rock_top=rock.position().top;
 				
 				car_left=car.position().left;
 				car_top=car.position().top;
 
-				// console.log(rock.context.id+" "+rock_left+" "+car_left);
-				
-				
-				if((rock_top+60-5>=car_top && rock_top+5<=car_top) && (rock_left<=car_left && car_left<=rock_left+123)){
+				if(((rock_top+60>=car_top && rock_top<=car_top)||(car_top+100>=rock_top && car_top+100<=rock_top+60)) && (rock_left<=car_left && car_left<=rock_left+123)){
 					
 					console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
 					console.log("akc");
 					car.attr("src","./images/car_smashed_1.png");
-					rock.attr("src","./images/broken_rock_by_pantapuff_d4t54st-fullview.jpg");
-					//movement=0;
-					rock.stop();
+					//rock.attr("src","./images/brown-and-grey-rocks-clipart-6 (1).svg");
+					movement=0;
+					$(".rocks1and2").stop();
+					$(".rocks3and4").stop();
+
 					
 				}
-
-			});
-			
-		
 		
 	});
 	
@@ -211,7 +206,44 @@ function hits(){
 	setTimeout(hits,100);	
 	
 }
+
+
+
+function hits2(){
+	let car=$("#car2");
+
+	if(!movement){
+			$(".rocks1and2").stop();
+			$(".rocks3and4").stop();
+	}
+	$(".rocks3and4").each(function(){
+				let rock=$(this);
+				
+				rock_left=rock.position().left;
+				rock_top=rock.position().top;
+				
+				car_left=car.position().left;
+				car_top=car.position().top;
+				if(((rock_top+60>=car_top && rock_top<=car_top)||(car_top+100>=rock_top && car_top+100<=rock_top+60)) && (rock_left<=car_left && car_left<=rock_left+123)){
+					
+					console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
+					console.log("akc");
+					car.attr("src","./images/car_smashed_1.png");
+					//rock.attr("src","./images/brown-and-grey-rocks-clipart-6 (1).svg");
+					movement=0;
+					$(".rocks1and2").stop();
+					$(".rocks3and4").stop();
+					
+				}
+		
+	});
+	
+	
+	setTimeout(hits2,100);	
+	
+}
 hits();
+hits2();
 
 
 
