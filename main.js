@@ -6,9 +6,7 @@
 // lane,which lane it belongs
 // ele to store the jquery element that will be appended to the board
 
-function rock(x,y,img,id,class_name,lane){
-	this.x=x;
-	this.y=y;
+function rock(img,id,class_name,lane){
 	this.img=img;
 	this.id=id;
 	this.class_name=class_name;
@@ -40,9 +38,7 @@ rock.prototype.move=function(speed){
 
 
 //car function for creating car objects and the attributes are same as rock objects
-function car(x,y,img,id,lane){
-	this.x=x;
-	this.y=y;
+function car(img,id,lane){
 	this.img=img;
 	this.id=id;
 	this.lane=lane;
@@ -63,10 +59,10 @@ car.prototype.setUp=function(){
 
 
 //initialised two cars
-const car1=new car(0,0,"./images/car3.svg","car1","#lane1");
+const car1=new car("./images/car3.svg","car1","#lane1");
 car1.setUp();
 
-const car2=new car(0,0,"./images/car3.svg","car2","#lane3");
+const car2=new car("./images/car3.svg","car2","#lane3");
 car2.setUp();
 
 
@@ -74,17 +70,20 @@ car2.setUp();
 
 
 //rock movement for different lanes
-var speed=2000;
+//as the speed variable decreases,speed increases
+//speed is the base speed
+var speed=2000;		 
 var speed_counter=speed;
 var maxspeed=600;
+
+//to increase the speed of the rocks through time,need to decrease the speed counter with iter variable
 var iter=20;
 
 //rock creation on lane one and animate the rock
 let lane1rock=function(){
-		var rock1=new rock(0,0,"./images/rock_1.png","rock1","rocks1and2","#lane1");
+		var rock1=new rock("./images/rock_1.png","rock1","rocks1and2","#lane1");
 		rock1.setUp(1);
 		rock1.move(speed_counter);
-		// console.log($("#rock1").position().left);
 		speed_counter-=iter;
 		if(speed_counter<maxspeed)
 			speed_counter=speed;
@@ -92,10 +91,9 @@ let lane1rock=function(){
 
 //rock creation on lane two and animate the rock
 let lane2rock=function(){
-		var rock2=new rock(0,0,"./images/rock_2.svg","rock2","rocks1and2","#lane2");
+		var rock2=new rock("./images/rock_2.svg","rock2","rocks1and2","#lane2");
 		rock2.setUp(126);
 		rock2.move(speed_counter);
-		// console.log($("#rock2").position().left);
 		speed_counter-=iter;
 		if(speed_counter<maxspeed)
 			speed_counter=speed;
@@ -103,7 +101,7 @@ let lane2rock=function(){
 
 //rock creation on lane three and animate the rock
 let lane3rock=function(){
-		var rock3=new rock(0,0,"./images/rock_3.png","rock3","rocks3and4","#lane3");
+		var rock3=new rock("./images/rock_3.png","rock3","rocks3and4","#lane3");
 		rock3.setUp(1);
 		rock3.move(speed_counter);
 		speed_counter-=iter;
@@ -114,7 +112,7 @@ let lane3rock=function(){
 
 //rock creation on lane four and animate the rock
 let lane4rock=function(){
-		var rock4=new rock(0,0,"./images/rock_4.png","rock4","rocks3and4","#lane4");
+		var rock4=new rock("./images/rock_4.png","rock4","rocks3and4","#lane4");
 		rock4.setUp(126);
 		rock4.move(speed_counter);
 		speed_counter-=iter;
@@ -128,14 +126,17 @@ let lane4rock=function(){
 //--------------------------------------------------------------------------------------------------------
 
 //interval logic so that two rocks come beside each other,
-var gap=1200;
-var movement=1;
 
+
+//gap variable is for the vertical gap between the two rocks,so that car should definetely has a way to move between them without hitting 
+var gap=1000;
+var movement=1;
+//for first two cars
 var interval=function(){
 	lane1rock();
 	var temp=Math.floor(gap+Math.random()*(2*gap));
 	if(movement)
-		setTimeout(interval2,temp);
+		var a=setTimeout(interval2,temp);
 	
 }
 interval();
@@ -144,17 +145,17 @@ interval();
 function interval2(){
 	lane2rock();
 	var temp=Math.floor(gap+Math.random()*(2*gap));
-	setTimeout(interval,temp);
+	var b=setTimeout(interval,temp);
 }
 
 
 
-
+//for second two cars
 var interval3=function(){
 	lane3rock();
 	var temp=Math.floor(gap+Math.random()*(2*gap));
 	if(movement)
-		setTimeout(interval4,temp);
+		var c=setTimeout(interval4,temp);
 }
 interval3();
 
@@ -162,20 +163,24 @@ interval3();
 function interval4(){
 	lane4rock();
 	var temp=Math.floor(gap+Math.random()*(2*gap));
-	setTimeout(interval3,temp);
+	var d=setTimeout(interval3,temp);
 }
 
 
 
 //---------------------------------------------------------------------------------------------------------
 
-function hits(){
+
+function hitsForFirstTwoRocks(){
 
 	let car=$("#car1");
 
 	if(!movement){
 				$(".rocks1and2").stop();
 				$(".rocks3and4").stop();
+			
+				
+
 	}
 
 	$(".rocks1and2").each(function(){
@@ -192,29 +197,31 @@ function hits(){
 					console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
 					console.log("akc");
 					car.attr("src","./images/car_smashed_1.png");
-					//rock.attr("src","./images/brown-and-grey-rocks-clipart-6 (1).svg");
+
 					movement=0;
 					$(".rocks1and2").stop();
 					$(".rocks3and4").stop();
-
+					
+						
 					
 				}
 		
 	});
 	
 	
-	setTimeout(hits,100);	
+	setTimeout(hitsForFirstTwoRocks,100);	
 	
 }
 
 
 
-function hits2(){
+function hitsForSecondTwoRocks(){
 	let car=$("#car2");
 
 	if(!movement){
 			$(".rocks1and2").stop();
 			$(".rocks3and4").stop();
+			
 	}
 	$(".rocks3and4").each(function(){
 				let rock=$(this);
@@ -229,21 +236,22 @@ function hits2(){
 					console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
 					console.log("akc");
 					car.attr("src","./images/car_smashed_1.png");
-					//rock.attr("src","./images/brown-and-grey-rocks-clipart-6 (1).svg");
+					
 					movement=0;
 					$(".rocks1and2").stop();
 					$(".rocks3and4").stop();
+					
 					
 				}
 		
 	});
 	
 	
-	setTimeout(hits2,100);	
+	setTimeout(hitsForSecondTwoRocks,100);	
 	
 }
-hits();
-hits2();
+hitsForFirstTwoRocks();
+hitsForSecondTwoRocks();
 
 
 
