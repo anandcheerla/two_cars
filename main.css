@@ -8,7 +8,7 @@
 }
 
 #leftlanes{
-	border:1px solid white;
+	/*border:1px solid white;*/
 	height:600px;
 	width:260px;
 	float:left;
@@ -19,7 +19,7 @@
 }
 
 #lane1{
-	border:1px solid white;
+	border-right:1px solid white;
 	height:600px;
 	width:128px;
 	float:left;
@@ -27,14 +27,14 @@
 }
 
 #lane2{
-	border:1px solid white;
+	border-right:1px solid white;
 	height:600px;
 	width:128px;
 	overflow: hidden;
 }
 
 #rightlanes{
-	border:1px solid white;
+	/*border:1px solid white;*/
 	height:600px;
 	width:260px;
 	overflow:hidden;
@@ -43,14 +43,14 @@
 }
 
 #lane3{
-	border:1px solid white;
+	border-right:1px solid white;
 	height:600px;
 	width:128px;
 	float:left;
 }
 
 #lane4{
-	border:1px solid white;
+	border-right:1px solid white;
 	height:600px;
 	width:128px;
 	overflow: hidden;

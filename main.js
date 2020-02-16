@@ -20,7 +20,7 @@ function rock(x,y,img,id,lane){
 // ancestor,so that rock will always come from top
 
 rock.prototype.setUp=function(left_gap){
-	this.ele=$("<img src="+this.img+" id="+this.id+" class=rock height=60 width=120>");
+	this.ele=$("<img src="+this.img+" id="+this.id+" class='rock' height=60 width=128>");
 	$(this.lane).append(this.ele);
 	this.ele.css({position:"absolute",left:left_gap+"px"});
 	
@@ -50,7 +50,7 @@ function car(x,y,img,id,lane){
 
 
 car.prototype.setUp=function(){
-	this.ele=$("<img src="+this.img+" id="+this.id+" class=car height=100 width=100>");
+	this.ele=$("<img src="+this.img+" id="+this.id+" class='car' height=100 width=128>");
 	$(this.lane).append(this.ele);
 	//position set as relative so that car will move
 	this.ele.css({position:"relative"});
@@ -143,6 +143,7 @@ function interval2(){
 
 
 
+
 var interval3=function(){
 	lane3rock();
 	var temp=Math.floor(gap+Math.random()*(2*gap));
@@ -165,23 +166,33 @@ function interval4(){
 function hits(){
 	$(".car").each(function(){
 		var car=$(this);
+			// console.log(car);
+			// console.log(document.querySelectorAll('.rock'));
+			// console.log($(".rock"));
 			$(".rock").each(function(){
 				var rock=$(this);
+			// 	console.log(rock);
+				
+				//console.log(Object.keys(rock));
 				
 				rock_left=rock.position().left;
 				rock_top=rock.position().top;
 				
 				car_left=car.position().left;
 				car_top=car.position().top;
+
+				//console.log(rock.context.id+" "+rock_left+" "+car_left);
 				
 				
-				if(rock_top+60>car_top && (rock_left<=car_left && car_left<rock_left+120)){
+				if(rock_top+60>car_top && (rock_left<car_left && car_left<rock_left+120)){
 					
+					console.log(car.context.id+" "+car_left+" "+rock_left);
 					car.attr("src","./images/car_smashed_1.png");
 					movement=0;
 					rock.stop();
 					
 				}
+
 			});
 			
 		
@@ -189,7 +200,7 @@ function hits(){
 	});
 	
 	
-	setTimeout(hits,200);	
+	setTimeout(hits,100);	
 	
 }
 hits();
@@ -206,22 +217,22 @@ $(document).on("keydown",function(key){
 	if(key.which === 37){ 
 			key.preventDefault();
 			if(flag==0){
-				$('#car1').animate({left:"+=130px"},200,"swing");
+				$('#car1').animate({left:"+=135px"},200,"swing");
 				flag=1;
 			}
 			else{
-				$('#car1').animate({left:"-=130px"},200,"swing");
+				$('#car1').animate({left:"-=135px"},200,"swing");
 				flag=0;
 			}		
 	}
 	else if(key.which === 39){ 
 			key.preventDefault();
 			if(flag2==0){
-				$('#car2').animate({left:"+=130px"},200,"swing");
+				$('#car2').animate({left:"+=135px"},200,"swing");
 				flag2=1;
 			}
 			else{
-				$('#car2').animate({left:"-=130px"},200,"swing");
+				$('#car2').animate({left:"-=135px"},200,"swing");
 				flag2=0;
 			}		
 	}
