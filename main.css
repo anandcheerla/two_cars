@@ -3,14 +3,14 @@
 	margin-left: 350px;
 	margin-right: 350px;
 	height: 600px;
-	width: 524px;
+	width: 500px;
 	background-color: green;
 }
 
 #leftlanes{
 	/*border:1px solid white;*/
 	height:600px;
-	width:260px;
+	width:250px;
 	float:left;
 	position:relative;
 	
@@ -19,40 +19,40 @@
 }
 
 #lane1{
-	border-right:1px solid white;
+	border:1px solid white;
 	height:600px;
-	width:128px;
+	width:123px;
 	float:left;
 	
 }
 
 #lane2{
-	border-right:1px solid white;
+	border:1px solid white;
 	height:600px;
-	width:128px;
+	width:123px;
 	overflow: hidden;
 }
 
 #rightlanes{
 	/*border:1px solid white;*/
 	height:600px;
-	width:260px;
+	width:250px;
 	overflow:hidden;
 	position:relative;
 		
 }
 
 #lane3{
-	border-right:1px solid white;
+	border:1px solid white;
 	height:600px;
-	width:128px;
+	width:123px;
 	float:left;
 }
 
 #lane4{
-	border-right:1px solid white;
+	border:1px solid white;
 	height:600px;
-	width:128px;
+	width:123px;
 	overflow: hidden;
 }
 
