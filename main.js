@@ -58,12 +58,39 @@ car.prototype.setUp=function(){
 };
 
 
+
+
 //initialised two cars
 const car1=new car("./images/unnamed.png","car1","#lane1");
 car1.setUp();
 
 const car2=new car("./images/unnamed.png","car2","#lane3");
 car2.setUp();
+
+
+//---------------------------------------------------------------------------------------------------------
+
+// function animal(img,id,class_name,lane){
+// 	this.img=img;
+// 	this.id=id;
+// 	this.class_name=class_name;
+// 	this.lane=lane;
+// 	this.ele=null;
+// }
+
+// animal.prototype.setUp=function(){
+// 	this.ele=$("<img src="+this.img+" id="+this.id+" class="+this.class_name+" height=100 width=123>");
+// 	$("#board").append(this.ele);
+// 	this.ele.css({position:"absolute",top:"100px",left:"800px"});
+// 	this.ele.animate({left:"-=600"},5000,"linear");
+
+// };
+
+
+
+// let horse=new animal("./images/source.gif","horse1","horses","#lane4");
+// horse.setUp();
+
 
 //---------------------------------------------------------------------------------------------------------
 //score card
@@ -179,18 +206,19 @@ function interval4(){
 
 //---------------------------------------------------------------------------------------------------------
 
-
+var st="-=";
+var hits_flag=true;
 function hitsForFirstTwoRocks(){
 
 	let car=$("#car1");
 
-	if(!movement){
-				$(".rocks1and2").stop();
-				$(".rocks3and4").stop();
-			
-				
+	// if(!movement){
+	// 			$(".rocks1and2").stop();
+	// 			$(".rocks3and4").stop();
+					
 
-	}
+	// }
+	
 
 	$(".rocks1and2").each(function(){
 				let rock=$(this);
@@ -206,12 +234,18 @@ function hitsForFirstTwoRocks(){
 					console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
 					console.log("akc");
 					car.attr("src","./images/broken_car2.png");
-					car.animate({left: '+=50',top: '-=30'},100,"linear");
+					if(hits_flag)
+						st="-=";
+					else
+						st="+=";
+					
+					car.animate({left: '+=50',top: st+'60'},500,"linear");
+					hits_flag=false;
 
-					movement=0;
+					// movement=0;
 					clearInterval(timer);
-					$(".rocks1and2").stop();
-					$(".rocks3and4").stop();
+					// $(".rocks1and2").stop();
+					// $(".rocks3and4").stop();
 					
 						
 					
@@ -225,15 +259,17 @@ function hitsForFirstTwoRocks(){
 }
 
 
+var st2="-=";
+var hits_flag2=true;
 
 function hitsForSecondTwoRocks(){
 	let car=$("#car2");
 
-	if(!movement){
-			$(".rocks1and2").stop();
-			$(".rocks3and4").stop();
+	// if(!movement){
+	// 		$(".rocks1and2").stop();
+	// 		$(".rocks3and4").stop();
 			
-	}
+	// }
 	$(".rocks3and4").each(function(){
 				let rock=$(this);
 				
@@ -247,12 +283,17 @@ function hitsForSecondTwoRocks(){
 					console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
 					console.log("akc");
 					car.attr("src","./images/broken_car2.png");
-					car.animate({left: '+=50',top: '+=30'},100,"linear");
-					
-					movement=0;
+					if(hits_flag2)
+						st2="-=";
+					else
+						st2="+=";
+					car.animate({left: '-=50',top: st2+'30'},500,"linear");
+					hits_flag2=false;
+
+					// movement=0;
 					clearInterval(timer);
-					$(".rocks1and2").stop();
-					$(".rocks3and4").stop();
+					// $(".rocks1and2").stop();
+					// $(".rocks3and4").stop();
 					
 					
 				}
