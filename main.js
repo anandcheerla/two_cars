@@ -59,11 +59,20 @@ car.prototype.setUp=function(){
 
 
 //initialised two cars
-const car1=new car("./images/car3.svg","car1","#lane1");
+const car1=new car("./images/unnamed.png","car1","#lane1");
 car1.setUp();
 
-const car2=new car("./images/car3.svg","car2","#lane3");
+const car2=new car("./images/unnamed.png","car2","#lane3");
 car2.setUp();
+
+//---------------------------------------------------------------------------------------------------------
+//score card
+var score=0;
+
+var timer=setInterval(function(){
+		score+=1;
+		document.getElementById("scoreh2").innerHTML=score;
+},500);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -196,9 +205,10 @@ function hitsForFirstTwoRocks(){
 					
 					console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
 					console.log("akc");
-					car.attr("src","./images/car_smashed_1.png");
+					car.attr("src","./images/broken_car2.png");
 
 					movement=0;
+					clearInterval(timer);
 					$(".rocks1and2").stop();
 					$(".rocks3and4").stop();
 					
@@ -235,9 +245,10 @@ function hitsForSecondTwoRocks(){
 					
 					console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
 					console.log("akc");
-					car.attr("src","./images/car_smashed_1.png");
+					car.attr("src","./images/broken_car2.png");
 					
 					movement=0;
+					clearInterval(timer);
 					$(".rocks1and2").stop();
 					$(".rocks3and4").stop();
 					
@@ -252,8 +263,6 @@ function hitsForSecondTwoRocks(){
 }
 hitsForFirstTwoRocks();
 hitsForSecondTwoRocks();
-
-
 
 //---------------------------------------------------------------------------------------------------------
 
