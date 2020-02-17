@@ -83,7 +83,7 @@ var timer=setInterval(function(){
 //speed is the base speed
 var speed=2000;		 
 var speed_counter=speed;
-var maxspeed=600;
+var maxspeed=900;
 
 //to increase the speed of the rocks through time,need to decrease the speed counter with iter variable
 var iter=20;
@@ -206,6 +206,7 @@ function hitsForFirstTwoRocks(){
 					console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
 					console.log("akc");
 					car.attr("src","./images/broken_car2.png");
+					car.animate({left: '+=50',top: '-=30'},100,"linear");
 
 					movement=0;
 					clearInterval(timer);
@@ -246,6 +247,7 @@ function hitsForSecondTwoRocks(){
 					console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
 					console.log("akc");
 					car.attr("src","./images/broken_car2.png");
+					car.animate({left: '+=50',top: '+=30'},100,"linear");
 					
 					movement=0;
 					clearInterval(timer);
