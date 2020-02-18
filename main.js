@@ -206,8 +206,6 @@ function interval4(){
 
 //---------------------------------------------------------------------------------------------------------
 
-var st="-=";
-var hits_flag=true;
 function hitsForFirstTwoRocks(){
 
 	let car=$("#car1");
@@ -234,13 +232,8 @@ function hitsForFirstTwoRocks(){
 					console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
 					console.log("akc");
 					car.attr("src","./images/broken_car2.png");
-					if(hits_flag)
-						st="-=";
-					else
-						st="+=";
 					
-					car.animate({left: '+=50',top: st+'60'},500,"linear");
-					hits_flag=false;
+					car.animate({left: '+=50',top: '+=60'},500,"linear");
 
 					// movement=0;
 					clearInterval(timer);
@@ -259,8 +252,6 @@ function hitsForFirstTwoRocks(){
 }
 
 
-var st2="-=";
-var hits_flag2=true;
 
 function hitsForSecondTwoRocks(){
 	let car=$("#car2");
@@ -283,12 +274,8 @@ function hitsForSecondTwoRocks(){
 					console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
 					console.log("akc");
 					car.attr("src","./images/broken_car2.png");
-					if(hits_flag2)
-						st2="-=";
-					else
-						st2="+=";
-					car.animate({left: '-=50',top: st2+'30'},500,"linear");
-					hits_flag2=false;
+
+					car.animate({left: '-=50',top: '+=30'},500,"linear");
 
 					// movement=0;
 					clearInterval(timer);
