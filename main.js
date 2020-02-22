@@ -301,7 +301,7 @@ let flag=0,flag2=0;
 
 $(document).on("keydown",function(key){
 	
-	if(key.which === 37){ 
+	if(key.which === 70){ 
 			key.preventDefault();
 			if(flag==0){
 				$('#car1').animate({left:"+=125px"},200,"swing");
@@ -314,7 +314,7 @@ $(document).on("keydown",function(key){
 				flag=0;
 			}		
 	}
-	else if(key.which === 39){ 
+	else if(key.which === 74){ 
 			key.preventDefault();
 			if(flag2==0){
 				$('#car2').animate({left:"+=125px"},200,"swing");
