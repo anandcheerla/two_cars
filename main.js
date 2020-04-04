@@ -204,7 +204,13 @@ function interval4(){
 
 
 
-//---------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------	
+// var crash = document.createElement("AUDIO");
+// document.body.appendChild(crash);
+// crash.src = "./sounds/car_crash.mp3";
+
+var crash = new Audio("./sounds/car_crash.mp3");
+
 
 function hitsForFirstTwoRocks(){
 
@@ -224,8 +230,8 @@ function hitsForFirstTwoRocks(){
 					console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
 					console.log("akc");
 					car.attr("src","./images/broken_car2.png");
-					
-					car.animate({left: '+=30',top: '+=30'},500,"linear");
+					crash.play();
+					car.animate({left: '80',top: '200'},1000,"linear");
 
 					movement=0;
 					clearInterval(timer);
@@ -259,9 +265,9 @@ function hitsForSecondTwoRocks(){
 				car_top=car.position().top;
 				if(((rock_top+60>=car_top && rock_top<=car_top)||(car_top+100>=rock_top && car_top+100<=rock_top+60)) && (rock_left<=car_left && car_left<=rock_left+123)){
 					
-					car.attr("src","./images/broken_car2.png");
-
-					car.animate({left: '-=30',top: '+=30'},500,"linear");
+					car.attr("src","./images/broken_car2.png");	
+					crash.play();
+					car.animate({left: '80',top: '200'},1000,"linear");
 
 					movement=0;
 					clearInterval(timer);
