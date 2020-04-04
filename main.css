@@ -1,3 +1,6 @@
+body{
+	background-color: black;
+}
 #board{
 	
 	margin-left: 350px;
@@ -55,6 +58,10 @@
 	height:600px;
 	width:123px;
 	overflow: hidden;
+}
+
+#scoreh2{
+	color: white;
 }
 
 

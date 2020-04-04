@@ -11,8 +11,8 @@ function rock(img,id,class_name,lane){
 	this.id=id;
 	this.class_name=class_name;
 	this.lane=lane;
-	this.ele=null;
-}
+	this.ele=null
+;}
 
 
 //setUp method will create img element and append to the board and make the element position absolute so that the rock animates relative the nearest positioned
@@ -208,15 +208,7 @@ function interval4(){
 
 function hitsForFirstTwoRocks(){
 
-	let car=$("#car1");
-
-	// if(!movement){
-	// 			$(".rocks1and2").stop();
-	// 			$(".rocks3and4").stop();
-					
-
-	// }
-	
+	let car=$("#car1");	
 
 	$(".rocks1and2").each(function(){
 				let rock=$(this);
@@ -233,18 +225,19 @@ function hitsForFirstTwoRocks(){
 					console.log("akc");
 					car.attr("src","./images/broken_car2.png");
 					
-					car.animate({left: '+=50',top: '+=60'},500,"linear");
+					car.animate({left: '+=30',top: '+=30'},500,"linear");
 
-					// movement=0;
+					movement=0;
 					clearInterval(timer);
-					// $(".rocks1and2").stop();
-					// $(".rocks3and4").stop();
-					
+				    $(".rocks1and2").stop();
+				    $(".rocks3and4").stop();
+
+				   // $(body).append($("<img src='./images/play_button.png'></img>"));
 						
-					
 				}
 		
 	});
+
 	
 	
 	setTimeout(hitsForFirstTwoRocks,100);	
@@ -256,11 +249,6 @@ function hitsForFirstTwoRocks(){
 function hitsForSecondTwoRocks(){
 	let car=$("#car2");
 
-	// if(!movement){
-	// 		$(".rocks1and2").stop();
-	// 		$(".rocks3and4").stop();
-			
-	// }
 	$(".rocks3and4").each(function(){
 				let rock=$(this);
 				
@@ -271,16 +259,15 @@ function hitsForSecondTwoRocks(){
 				car_top=car.position().top;
 				if(((rock_top+60>=car_top && rock_top<=car_top)||(car_top+100>=rock_top && car_top+100<=rock_top+60)) && (rock_left<=car_left && car_left<=rock_left+123)){
 					
-					console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
-					console.log("akc");
 					car.attr("src","./images/broken_car2.png");
 
-					car.animate({left: '-=50',top: '+=30'},500,"linear");
+					car.animate({left: '-=30',top: '+=30'},500,"linear");
 
-					// movement=0;
+					movement=0;
 					clearInterval(timer);
-					// $(".rocks1and2").stop();
-					// $(".rocks3and4").stop();
+					$(".rocks1and2").stop();
+					$(".rocks3and4").stop();
+					//$(body).append($("<img src='./images/play_button.png'></img>"));
 					
 					
 				}
