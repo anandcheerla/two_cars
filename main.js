@@ -77,7 +77,7 @@ let rock4_img="./images/rock_4.png";
 var tempSpeed=1200;
 var variation=400;
 var speed=1600;		 
-var maxspeed=1000;
+var maxspeed=800;
 
 var speed_counter=speed;
 //to increase the speed of the rocks through time,need to decrease the speed counter with iter variable
@@ -225,7 +225,7 @@ function hitsForFirstTwoRocks(){
 					rockMovement=0;
 					clearInterval(timer);
 				    $(".rocks1and2").stop();
-				    $(".rocks3and4").stop();	
+				    	
 				}
 	});
 	if(firstCarHit)
@@ -249,7 +249,7 @@ function hitsForSecondTwoRocks(){
 					secondCarHit=0;
 					rockMovement=0;
 					clearInterval(timer);
-					$(".rocks1and2").stop();
+					
 					$(".rocks3and4").stop();					
 				}
 	});
