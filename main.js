@@ -6,6 +6,8 @@
 // lane,which lane it belongs
 // ele to store the jquery element that will be appended to the board
 
+alert("use F and J to move cars");
+
 function rock(img,id,class_name,lane){
 	this.img=img;
 	this.id=id;
@@ -78,6 +80,7 @@ var tempSpeed=1200;
 var variation=400;
 var speed=1600;		 
 var maxspeed=800;
+var randomSpeedBase=1100;
 
 var speed_counter=speed;
 //to increase the speed of the rocks through time,need to decrease the speed counter with iter variable
@@ -91,8 +94,8 @@ let lane1rock=function(){
 		speed_counter-=iter;
 		if(speed_counter<maxspeed)
 		{	
-			speed=tempSpeed+Math.random()*variation;
-			speed_counter=speed;
+			//speed=tempSpeed+Math.random()*variation;
+			speed_counter=randomSpeedBase+Math.random()*variation;
 		}
 };
 
@@ -103,8 +106,8 @@ let lane2rock=function(){
 		rock2.move(speed_counter);
 		speed_counter-=iter;
 		if(speed_counter<maxspeed){
-			speed=tempSpeed+Math.random()*variation;
-			speed_counter=speed;
+			//speed=tempSpeed+Math.random()*variation;
+			speed_counter=randomSpeedBase+Math.random()*variation;
 		}
 };
 
@@ -115,8 +118,8 @@ let lane3rock=function(){
 		rock3.move(speed_counter);
 		speed_counter-=iter;
 		if(speed_counter<maxspeed){
-			speed=tempSpeed+Math.random()*variation;
-			speed_counter=speed;
+			//speed=tempSpeed+Math.random()*variation;
+			speed_counter=randomSpeedBase+Math.random()*variation;
 		}
 
 };
@@ -128,8 +131,8 @@ let lane4rock=function(){
 		rock4.move(speed_counter);
 		speed_counter-=iter;
 		if(speed_counter<maxspeed){
-			speed=tempSpeed+Math.random()*variation;
-			speed_counter=speed;
+			//speed=tempSpeed+Math.random()*variation;
+			speed_counter=randomSpeedBase+Math.random()*variation;
 		}
 
 };
@@ -142,7 +145,7 @@ let lane4rock=function(){
 //interval logic so that two rocks come beside each other,
 
 //gap variable is for the vertical gap between the two rocks,so that car should definetely has a way to move between them without hitting 
-var gap=1000;
+var gap=600;
 var rockMovement=1;
 let rockIntervalLogic=function(){
 	
