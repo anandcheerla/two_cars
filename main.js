@@ -55,6 +55,8 @@ car1.setUp();
 const car2=new car("./images/unnamed.png","car2","#lane3");
 car2.setUp();
 
+var crash = new Audio("./sounds/car_crash.wav");
+crash.preload = 'auto';
 
 //---------------------------------------------------------------------------------------------------------
 //score card
@@ -190,11 +192,8 @@ rockIntervalLogic();
 //collision handling
 
 
-var crash = new Audio("./sounds/car_crash.mp3");
-
 var firstCarHit=1;
 var secondCarHit=1;
-
 
 function hitsForFirstTwoRocks(){
 	let car=$("#car1");	
@@ -217,8 +216,8 @@ function hitsForFirstTwoRocks(){
 			    }
 		   	    else{
 					
-					console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
-					console.log("akc");
+					// console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
+					// console.log("akc");
 					car.attr("src","./images/broken_car2.png");
 					crash.play();
 
