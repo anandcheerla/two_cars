@@ -68,6 +68,7 @@ let scoreCard=function(){
 }
 scoreCard();
 //---------------------------------------------------------------------------------------------------------
+//rock images
 
 let rock1_img="./images/rock_1.png";
 let rock2_img="./images/rock_2.svg";
@@ -184,28 +185,37 @@ let rockIntervalLogic=function(){
 	}
 }
 rockIntervalLogic();
+
 //---------------------------------------------------------------------------------------------------------	
-// var crash = document.createElement("AUDIO");
-// document.body.appendChild(crash);
-// crash.src = "./sounds/car_crash.mp3";
+//collision handling
+
 
 var crash = new Audio("./sounds/car_crash.mp3");
 
 var firstCarHit=1;
 var secondCarHit=1;
 
+
 function hitsForFirstTwoRocks(){
 	let car=$("#car1");	
 	$(".rocks1and2").each(function(){
 				let rock=$(this);
 
+				//rock and car positions
 				rock_left=rock.position().left;
 				rock_top=rock.position().top;
-				
+				rock_right=rock_left+rock.width();
+				rock_bottom=rock_top+rock.height();
+
 				car_left=car.position().left;
 				car_top=car.position().top;
+				car_right=car_left+car.width();
+				car_bottom=car_top+car.height();
 
-				if(((rock_top+60>=car_top && rock_top<=car_top)||(car_top+100>=rock_top && car_top+100<=rock_top+60)) && (rock_left<=car_left && car_left<=rock_left+123)){
+				if (rock_bottom < car_top || rock_top > car_bottom || rock_right < car_left || rock_left > car_right) {
+					//no collision happpened	  
+			    }
+		   	    else{
 					
 					console.log(rock.context.id+" "+car.context.id+" "+rock_left+" "+rock_top+" "+car_left+" "+car_top);
 					console.log("akc");
@@ -223,7 +233,6 @@ function hitsForFirstTwoRocks(){
 				      	  }
 				    });
 
-
 					firstCarHit=0;
 					rockMovement=0;
 					clearInterval(timer);
@@ -240,12 +249,22 @@ function hitsForSecondTwoRocks(){
 	$(".rocks3and4").each(function(){
 				let rock=$(this);
 				
+				//rock and car positions
 				rock_left=rock.position().left;
 				rock_top=rock.position().top;
-				
+				rock_right=rock_left+rock.width();
+				rock_bottom=rock_top+rock.height();
+
 				car_left=car.position().left;
 				car_top=car.position().top;
-				if(((rock_top+60>=car_top && rock_top<=car_top)||(car_top+100>=rock_top && car_top+100<=rock_top+60)) && (rock_left<=car_left && car_left<=rock_left+123)){
+				car_right=car_left+car.width();
+				car_bottom=car_top+car.height();
+
+				if (rock_bottom < car_top || rock_top > car_bottom || rock_right < car_left || rock_left > car_right) {
+					//no collision happpened	  
+			    }
+		   	    else{
+
 					car.attr("src","./images/broken_car2.png");	
 					crash.play();
 					car.animate({left: '80',top: '-=100'},1000,"linear");
@@ -262,41 +281,35 @@ function hitsForSecondTwoRocks(){
 hitsForFirstTwoRocks();
 hitsForSecondTwoRocks();
 
+
 //---------------------------------------------------------------------------------------------------------
 
 //key event listening so that cars move in a toggle fashion
 let player=function(){
 	let flag=0,flag2=0;	
-
 	$(document).on("keydown",function(key){
-		
 		if(key.which === 70){ 
 				key.preventDefault();
 				if(flag==0){
-					$('#car1').animate({left:"+=125px"},200,"swing");
-					
+					$('#car1').animate({left:"+=125px"},200,"swing");				
 					flag=1;
 				}
 				else{
 					$('#car1').animate({left:"-=125px"},200,"swing");
-					
 					flag=0;
 				}		
 		}
 		else if(key.which === 74){ 
 				key.preventDefault();
 				if(flag2==0){
-					$('#car2').animate({left:"+=125px"},200,"swing");
-					
+					$('#car2').animate({left:"+=125px"},200,"swing");			
 					flag2=1;
 				}
 				else{
 					$('#car2').animate({left:"-=125px"},200,"swing");
-					
 					flag2=0;
 				}		
-		}
-		
+		}	
 	});
  }
  player();
