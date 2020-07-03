@@ -27,7 +27,7 @@ rock.prototype.setUp=function(left_gap){
 //move method is to animate the rock element from the top till bottom and removes the element after reaching bottom
 rock.prototype.move=function(speed){
 	//removing the rock after animation
-	this.ele.animate({top:"550px"},speed,"linear",function(){this.remove();});
+	this.ele.animate({bottom:0},speed,"linear",function(){this.remove();});
 };
 
 //--------------------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ car.prototype.setUp=function(){
 	$(this.lane).append(this.ele);
 	//position set as relative so that car will move
 	this.ele.css({position:"relative"});
-	this.ele.css({top:"400px"});
+	this.ele.css({top:"70%"});
 
 };
 
@@ -92,7 +92,7 @@ var iter=20;
 //rock creation on lane one and animate the rock
 let lane1rock=function(){
 		var rock1=new rock(rock1_img,"rock1","rocks1and2","#lane1");
-		rock1.setUp(1);
+		rock1.setUp(0);
 		rock1.move(speed_counter);
 		speed_counter-=iter;
 		if(speed_counter<maxspeed)
@@ -117,7 +117,7 @@ let lane2rock=function(){
 //rock creation on lane three and animate the rock
 let lane3rock=function(){
 		var rock3=new rock(rock3_img,"rock3","rocks3and4","#lane3");
-		rock3.setUp(1);
+		rock3.setUp(0);
 		rock3.move(speed_counter);
 		speed_counter-=iter;
 		if(speed_counter<maxspeed){

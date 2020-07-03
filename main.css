@@ -2,70 +2,92 @@ body{
 	background-color: black;
 
 }
+
+#screen{
+	position: relative;
+}
+
 #board{
 	
-	margin-left: 350px;
+/*	margin-left: 350px;
 	margin-right: 350px;
-	height: 600px;
-	width: 500px;
+*/	height: 100%;
+	width: 501px;
 	background-color: black;
-	float: left;
+	border:1px solid grey;
+	/*display: inline-block;*/
+	/*float: left;*/
 	
 }
 
 #leftlanes{
-	/*border:1px solid white;*/
-	height:600px;
-	width:250px;
-	float:left;
-	position:relative;
 	
-	
-	
+	height:100%;
+	width:248px;
+	display: inline-flex;
+	/*float:left;*/
+	/*position:relative;*/
+		
 }
 
+
+
 #lane1{
-	border:1px solid white;
-	height:600px;
-	width:123px;
-	float:left;
+	border-right:1px solid grey;
+	height:100%;
+	width:124px;
+	/*background: red;*/
+	/*float:left;*/
+	
 	
 }
 
 #lane2{
-	border:1px solid white;
-	height:600px;
-	width:123px;
-	overflow: hidden;
+	border-right:1px solid grey;
+	height:100%;
+	width:124px;
+	/*background: blue;*/
+	/*float:right;*/
+	/*overflow: hidden;*/
+	/*float:right;*/
+	
 }
 
+
 #rightlanes{
-	/*border:1px solid white;*/
-	height:600px;
-	width:250px;
-	overflow:hidden;
+	
+	height:100%;
+	width:248px;
+	display: inline-flex;
+	/*overflow:hidden;*/
 	position:relative;
 		
 }
-
 #lane3{
-	border:1px solid white;
-	height:600px;
-	width:123px;
-	float:left;
+	border-right:1px solid grey;
+	height:100%;
+	width:124px;
+	/*background: yellow;*/
+	/*float:left;*/
 }
 
 #lane4{
-	border:1px solid white;
-	height:600px;
-	width:123px;
-	overflow: hidden;
+	/*border:1px solid white;*/
+	height:100%;
+	width:124px;
+	/*background: pink;*/
+	/*overflow: hidden;*/
 }
 
 #scoreh2{
-	color: white;
+	color: #4766d6;
 }
 
+#scorediv{
+	position: absolute;
+	top:0;
+	left:440px;
+}
 
 #instructions{
 	color: white;
