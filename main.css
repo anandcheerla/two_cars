@@ -13,8 +13,11 @@ body{
 	margin-right: 350px;
 */	height: 100%;
 	width: 501px;
+	margin: 0 auto;
 	background-color: black;
 	border:1px solid grey;
+	display: relative;
+
 	/*display: inline-block;*/
 	/*float: left;*/
 	
@@ -26,7 +29,7 @@ body{
 	width:248px;
 	display: inline-flex;
 	/*float:left;*/
-	/*position:relative;*/
+	position:relative;
 		
 }
 
@@ -85,8 +88,12 @@ body{
 
 #scorediv{
 	position: absolute;
+	height: 100%;
+	width: 124px;
+	right:0;
 	top:0;
-	left:440px;
+
+	
 }
 
 #instructions{

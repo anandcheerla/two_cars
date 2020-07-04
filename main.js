@@ -6,7 +6,7 @@
 // lane,which lane it belongs
 // ele to store the jquery element that will be appended to the board
 
-alert("use F and J to move cars");
+alert("use F and J to move cars, Game starts after you click Ok");
 
 function rock(img,id,class_name,lane){
 	this.img=img;
@@ -82,12 +82,12 @@ let rock4_img="./images/rock_4.png";
 var tempSpeed=1200;
 var variation=400;
 var speed=1600;		 
-var maxspeed=800;
+var maxspeed=700;
 var randomSpeedBase=1100;
 
 var speed_counter=speed;
 //to increase the speed of the rocks through time,need to decrease the speed counter with iter variable
-var iter=20;
+var iter=10;
 
 //rock creation on lane one and animate the rock
 let lane1rock=function(){
