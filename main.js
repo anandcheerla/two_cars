@@ -6,6 +6,8 @@
 // lane,which lane it belongs
 // ele to store the jquery element that will be appended to the board
 
+var instructionsButtonClicked=false;
+
 let game=function(){
 
 // alert("use F and J to move cars, Game starts after you click Ok");
@@ -13,6 +15,8 @@ let game=function(){
 
 var firstCarNoHit=1;
 var secondCarNoHit=1;
+
+
 
 
 function rock(img,id,class_name,lane){
@@ -381,7 +385,57 @@ let player=function(){
 
 game();
 
+let instructions=function(){
+	if(!instructionsButtonClicked){
+		instructionsButtonClicked=true;
+		$("#instructions").css({display:"inline"});
+		$("#board").animate({ deg: '+90'},
+					    {
+						      duration: 1000,
+						      step: function(now) {
+						      	 $(this).css({ transform: 'rotate(' + now + 'deg)' });
+					      	  }
+					    }
+		);
+	}
+	else{
+		instructionsButtonClicked=false;
+		$("#instructions").css({display:"none"});
+		$("#board").animate({ deg: '0'},
+					    {
+						      duration: 1000,
+						      step: function(now) {
+						      	 $(this).css({ transform: 'rotate(' + now + 'deg)' });
+					      	  }
+					    }
+		);
+
+	}
+
+}
+
+
+
 let endEffects=function(){
+
+	console.log("akc");
+
+	if(instructionsButtonClicked){
+		$("#board").animate({ deg: '0'},
+				    {
+					      duration: 1000,
+					      step: function(now) {
+					      	 $(this).css({ transform: 'rotate(' + now + 'deg)' });
+				      	  }
+		});
+	 instructionsButtonClicked=false;
+	 $("#instructions").css({display:"none"});
+	}
+
+	console.log("pkc");
+
+
+
 	$("#playagain").css({display:"none"});
 	let board = $("#board");
 	// let leftLanes = $("#leftlanes");

@@ -2,6 +2,8 @@ body{
 	/*background-color: black;*/
 	background: #44484a;
 
+
+
 }
 
 #screen{
@@ -104,19 +106,41 @@ body{
 }
 
 #instructions{
+	position: absolute;
 	color: white;
+	top:30;
+	left:35%;
+	display: none;
+
 }
 
 
 #playagain{
 
   position: absolute;
+  height: 100%;
+  width: 100%;
   /*min-width: 70%;*/
-  top: 30%;
-  left:44%;
+  top: 0%;
+  left:0%;
   display: none;
+
+  background: black;
+  opacity: 0.7;
 }
 
+#reloadButton{
+	position: absolute;
+	top:40%;
+	left: 45%;
+}
+
+#instructionsButton{
+	position: absolute;
+	top:30;
+	right:10%;
+	z-index: 1;
+}
 /*#playagainbutton{
 	display: none;
 }*/
