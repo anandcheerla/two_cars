@@ -11,10 +11,6 @@ var instructionsButtonClicked=false;
 
 let game=function(){
 
-// alert("use F and J to move cars, Game starts after you click Ok");
-alert("use F and J to move cars, Game starts after you click Ok");
-
-// $("#board").trigger("click");
 
 var firstCarNoHit=1;
 var secondCarNoHit=1;
