@@ -1,5 +1,6 @@
 body{
-	background-color: black;
+	/*background-color: black;*/
+	background: #44484a;
 
 }
 
@@ -99,6 +100,16 @@ body{
 #instructions{
 	color: white;
 }
+
+
+#playagain{
+
+  position: absolute;
+  top: 50;
+  right:0;
+  
+}
+  
 
 
 
