@@ -316,7 +316,14 @@ function hitsForSecondTwoRocks(){
 
 					car.attr("src","./images/broken_car2.png");	
 					crash.play();
-					car.animate({left: '80',top: '-=100'},1000,"linear");
+					// car.animate({left: '80',top: '-=100'},1000,"linear");
+					car.animate({ deg: '+=360', left: '+=100', top: '-=100' },
+				    {
+					      duration: 500,
+					      step: function(now) {
+					      	 $(this).css({ transform: 'rotate(' + now + 'deg)' });
+				      	  }
+				    });
 					secondCarNoHit=0;
 					rockMovement=0;
 					clearInterval(timer);
@@ -418,7 +425,6 @@ let instructions=function(){
 
 let endEffects=function(){
 
-	console.log("akc");
 
 	if(instructionsButtonClicked){
 		$("#board").animate({ deg: '0'},
@@ -432,7 +438,6 @@ let endEffects=function(){
 	 $("#instructions").css({display:"none"});
 	}
 
-	console.log("pkc");
 
 
 
