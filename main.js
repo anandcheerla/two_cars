@@ -7,6 +7,11 @@
 // ele to store the jquery element that will be appended to the board
 
 alert("use F and J to move cars, Game starts after you click Ok");
+// $("#board").trigger("click");
+
+var firstCarNoHit=1;
+var secondCarNoHit=1;
+
 
 function rock(img,id,class_name,lane){
 	this.img=img;
@@ -19,15 +24,18 @@ function rock(img,id,class_name,lane){
 //setUp method will create img element and append to the board and make the element position absolute so that the rock animates relative the nearest positioned
 // ancestor,so that rock will always come from top
 rock.prototype.setUp=function(left_gap){
-	this.ele=$("<img src="+this.img+" id="+this.id+" class="+this.class_name+" height=60 width=123>");
-	$(this.lane).append(this.ele);
-	this.ele.css({position:"absolute",left:left_gap+"px"});
-	
+	if(firstCarNoHit && secondCarNoHit){
+		this.ele=$("<img src="+this.img+" id="+this.id+" class="+this.class_name+" height=60 width=123>");
+		$(this.lane).append(this.ele);
+		this.ele.css({position:"absolute",left:left_gap+"px"});
+	}
 };
 //move method is to animate the rock element from the top till bottom and removes the element after reaching bottom
 rock.prototype.move=function(speed){
 	//removing the rock after animation
-	this.ele.animate({bottom:0},speed,"linear",function(){this.remove();});
+	if(firstCarNoHit && secondCarNoHit){
+		this.ele.animate({bottom:0},speed,"linear",function(){this.remove();});
+	}
 };
 
 //--------------------------------------------------------------------------------------------
@@ -192,12 +200,14 @@ rockIntervalLogic();
 //collision handling
 
 
-var firstCarHit=1;
-var secondCarHit=1;
+var firstCarNoHit=1;
+var secondCarNoHit=1;
 
 function hitsForFirstTwoRocks(){
 	let car=$("#car1");	
 	$(".rocks1and2").each(function(){
+
+
 				let rock=$(this);
 
 				//rock and car positions
@@ -232,14 +242,17 @@ function hitsForFirstTwoRocks(){
 				      	  }
 				    });
 
-					firstCarHit=0;
+					firstCarNoHit=0;
 					rockMovement=0;
 					clearInterval(timer);
+					// rock.css({position:"static"});
+					// rock.hide();
 				    $(".rocks1and2").stop();
+				    setTimeout(function(){$("#playagain").css({display:"inline"})},1000);
 				    	
 				}
 	});
-	if(firstCarHit)
+	if(firstCarNoHit)
 		setTimeout(hitsForFirstTwoRocks,100);	
 }
 
@@ -267,14 +280,16 @@ function hitsForSecondTwoRocks(){
 					car.attr("src","./images/broken_car2.png");	
 					crash.play();
 					car.animate({left: '80',top: '-=100'},1000,"linear");
-					secondCarHit=0;
+					secondCarNoHit=0;
 					rockMovement=0;
 					clearInterval(timer);
-					
-					$(".rocks3and4").stop();					
+					// rock.css({position:"static"});
+					$(".rocks3and4").stop();		
+				    setTimeout(function(){$("#playagain").css({display:"inline"})},1000);
+			
 				}
 	});
-	if(secondCarHit)
+	if(secondCarNoHit)
 		setTimeout(hitsForSecondTwoRocks,100);	
 }
 hitsForFirstTwoRocks();
@@ -287,7 +302,7 @@ hitsForSecondTwoRocks();
 let player=function(){
 	let flag=0,flag2=0;	
 	$(document).on("keydown",function(key){
-		if(key.which === 70){ 
+		if(key.which === 70 && (firstCarNoHit && secondCarNoHit)){ 
 				key.preventDefault();
 				if(flag==0){
 					$('#car1').animate({left:"+=125px"},200,"swing");				
@@ -298,7 +313,7 @@ let player=function(){
 					flag=0;
 				}		
 		}
-		else if(key.which === 74){ 
+		else if(key.which === 74 && (firstCarNoHit && secondCarNoHit)){ 
 				key.preventDefault();
 				if(flag2==0){
 					$('#car2').animate({left:"+=125px"},200,"swing");			
