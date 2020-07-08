@@ -105,10 +105,15 @@ body{
 #playagain{
 
   position: absolute;
-  top: 50;
-  right:0;
-  
+  /*min-width: 70%;*/
+  top: 30%;
+  left:44%;
+  display: none;
 }
+
+/*#playagainbutton{
+	display: none;
+}*/
   
 
 

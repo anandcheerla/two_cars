@@ -247,6 +247,7 @@ function hitsForFirstTwoRocks(){
 					// rock.css({position:"static"});
 					// rock.hide();
 				    $(".rocks1and2").stop();
+				    setTimeout(function(){$("#playagain").css({display:"inline"})},1000);
 				    	
 				}
 	});
@@ -282,7 +283,9 @@ function hitsForSecondTwoRocks(){
 					rockMovement=0;
 					clearInterval(timer);
 					// rock.css({position:"static"});
-					$(".rocks3and4").stop();					
+					$(".rocks3and4").stop();		
+				    setTimeout(function(){$("#playagain").css({display:"inline"})},1000);
+			
 				}
 	});
 	if(secondCarNoHit)
