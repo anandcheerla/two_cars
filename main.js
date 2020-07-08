@@ -6,8 +6,10 @@
 // lane,which lane it belongs
 // ele to store the jquery element that will be appended to the board
 
-alert("use F and J to move cars, Game starts after you click Ok");
-$("#board").trigger("click");
+let game=function(){
+
+// alert("use F and J to move cars, Game starts after you click Ok");
+// $("#board").trigger("click");
 
 var firstCarNoHit=1;
 var secondCarNoHit=1;
@@ -18,8 +20,8 @@ function rock(img,id,class_name,lane){
 	this.id=id;
 	this.class_name=class_name;
 	this.lane=lane;
-	this.ele=null
-;}
+	this.ele=null;
+}
 
 //setUp method will create img element and append to the board and make the element position absolute so that the rock animates relative the nearest positioned
 // ancestor,so that rock will always come from top
@@ -149,6 +151,15 @@ let lane4rock=function(){
 };
 
 
+//-------------------------------------------------------------------------------------------------------
+
+// let movingBoard1 = setInterval(function(){
+// $("#board").animate({left: '100'},1000,"linear");
+// },1000);
+// let movingBoard2 = setInterval(function(){
+// $("#board").animate({left: '0'},1000,"linear");
+
+// },1000);
 
 
 //--------------------------------------------------------------------------------------------------------
@@ -196,6 +207,16 @@ let rockIntervalLogic=function(){
 }
 rockIntervalLogic();
 
+//---------------------------------------------------------------------------------------------------------	\
+
+let displayPlayButton = function(){
+
+	$("#playagain").css({display:"inline"});
+	
+}
+
+
+
 //---------------------------------------------------------------------------------------------------------	
 //collision handling
 
@@ -242,13 +263,25 @@ function hitsForFirstTwoRocks(){
 				      	  }
 				    });
 
+
 					firstCarNoHit=0;
 					rockMovement=0;
 					clearInterval(timer);
 					// rock.css({position:"static"});
 					// rock.hide();
 				    $(".rocks1and2").stop();
-				    setTimeout(function(){$("#playagain").css({display:"inline"})},1000);
+   					
+   					// $("#playagain").removeProp("display");
+
+				    // $("#board").animate({deg: '+=360', left: '50%',top: '+=100'},1000,"linear")},1000);
+
+					//  if(!(firstCarNoHit && secondCarNoHit))
+					// 	clearInterval(movingBoard1);
+					// if(!(firstCarNoHit && secondCarNoHit))
+					// 	clearInterval(movingBoard2);
+				   	setTimeout(displayPlayButton,1000);
+
+
 				    	
 				}
 	});
@@ -284,8 +317,23 @@ function hitsForSecondTwoRocks(){
 					rockMovement=0;
 					clearInterval(timer);
 					// rock.css({position:"static"});
-					$(".rocks3and4").stop();		
-				    setTimeout(function(){$("#playagain").css({display:"inline"})},1000);
+					$(".rocks3and4").stop();	
+
+
+					// $("#playagain").removeProp("display");
+
+				    // setTimeout(function(){$("#board").animate({deg: '+=360', left: '80',top: '+=100'},1000,"linear")},1000);
+
+				   
+				   	setTimeout(displayPlayButton,1000);
+				 //     if(!(firstCarNoHit && secondCarNoHit))
+					// 	clearInterval(movingBoard1);
+					// if(!(firstCarNoHit && secondCarNoHit))
+					// 	clearInterval(movingBoard2);
+
+
+
+
 			
 				}
 	});
@@ -327,3 +375,38 @@ let player=function(){
 	});
  }
  player();
+
+
+}
+
+game();
+
+let endEffects=function(){
+	$("#playagain").css({display:"none"});
+	let board = $("#board");
+	// let leftLanes = $("#leftlanes");
+	// let rightLanes = $("#rightlanes");
+	let lane1=$("#lane1");
+	let lane2=$("#lane2");
+	let lane3=$("#lane3");
+	let lane4=$("#lane4");
+
+	let newBoard = board;
+	board.animate({left:"-700",top:"+80px"},700);
+	board.animate({left:"+2000px",top:"+200px"},1000,function(){
+	lane1.empty();
+	lane2.empty();
+	lane3.empty();
+	lane4.empty();
+	board.animate({left:"-2000px",top:"-200px"},1000);
+	board.animate({left:"0",top:"0"},1000,function(){game();});
+		
+	});
+	
+
+
+}
+
+
+
+
