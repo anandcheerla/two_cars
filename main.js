@@ -7,6 +7,7 @@
 // ele to store the jquery element that will be appended to the board
 
 alert("use F and J to move cars, Game starts after you click Ok");
+$("#board").trigger("click");
 
 var firstCarNoHit=1;
 var secondCarNoHit=1;
