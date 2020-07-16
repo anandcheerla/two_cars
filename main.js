@@ -87,8 +87,8 @@ scoreCard();
 
 let rock1_img="./images/rock_1.png";
 let rock2_img="./images/rock_2.svg";
-let rock3_img="./images/rock_3.png";
-let rock4_img="./images/rock_4.png";
+let rock3_img="./images/rock_4.png";
+let rock4_img="./images/rock_3.png";
 //rock movement for different lanes
 //as the speed variable decreases,speed increases
 //speed is the base speed
