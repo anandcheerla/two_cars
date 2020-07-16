@@ -70,7 +70,7 @@ car2.setUp();
 
 var crash = new Audio("./sounds/car_crash.wav");
 crash.preload = 'auto';
-
+   
 //---------------------------------------------------------------------------------------------------------
 //score card
 var timer;
@@ -258,7 +258,11 @@ function hitsForFirstTwoRocks(){
 					// car.css({'transform' : 'rotate('+180 +'deg)'});
 					// car.animate({left: '80',top: '200'},1000,"linear");
 
-				    car.animate({ deg: '+=360', left: '+=50', top: '+=100' },
+					crash_anim_left=Math.random()*100;
+					crash_anim_top=Math.random()*100;
+					crash_anim_deg=180+Math.random()*180;
+
+				    car.animate({ deg: '+='+crash_anim_deg, left: '+='+crash_anim_left, top: '+='+crash_anim_top },
 				    {
 					      duration: 1000,
 					      step: function(now) {
@@ -316,13 +320,20 @@ function hitsForSecondTwoRocks(){
 					car.attr("src","./images/broken_car2.png");	
 					crash.play();
 					// car.animate({left: '80',top: '-=100'},1000,"linear");
-					car.animate({ deg: '+=360', left: '+=100', top: '-=100' },
+					crash_anim_left=Math.random()*100;
+					crash_anim_top=Math.random()*100;
+					crash_anim_deg=180+Math.random()*180;
+
+				    car.animate({ deg: '+='+crash_anim_deg, left: '+='+crash_anim_left, top: '+='+crash_anim_top },
 				    {
-					      duration: 500,
+					      duration: 1000,
 					      step: function(now) {
 					      	 $(this).css({ transform: 'rotate(' + now + 'deg)' });
 				      	  }
 				    });
+
+
+
 					secondCarNoHit=0;
 					rockMovement=0;
 					clearInterval(timer);
@@ -450,13 +461,13 @@ let endEffects=function(){
 	let lane4=$("#lane4");
 
 	let newBoard = board;
-	board.animate({left:"-700",top:"+80px"},700);
-	board.animate({left:"+2000px",top:"+200px"},1000,function(){
+	// board.animate({left:"-700",top:"+80px"},700);
+	board.animate({top:"+800px"},1000,function(){
 	lane1.empty();
 	lane2.empty();
 	lane3.empty();
 	lane4.empty();
-	board.animate({left:"-2000px",top:"-200px"},1000);
+	// board.animate({left:"-2000px",top:"-200px"},1000);
 	board.animate({left:"0",top:"0"},1000,function(){game();});
 		
 	});
