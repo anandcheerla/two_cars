@@ -548,7 +548,13 @@ let game=function(){
 //---------------------------------------------------------------------------------------------------------
 
 
+var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+// console.log(navigator.userAgent);
+
 game();
+if(isMobile){
+	$("#mobileWarning").css({display:"inline"});
+}
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -675,7 +681,7 @@ let endEffects=function(){
 
 	let newBoard = board;
 	// board.animate({left:"-700",top:"+80px"},700);
-	board.animate({top:"+800px"},1000,function(){
+	board.animate({top:"+"+screen.height},1000,function(){
 	lane1.empty();
 	lane2.empty();
 	lane3.empty();

@@ -133,6 +133,7 @@ body{
 	position: absolute;
 	top:40%;
 	left: 45%;
+	
 }
 
 #instructionsButton{
@@ -147,5 +148,13 @@ body{
 }*/
   
 
+#mobileWarning{
+	position: absolute;
+	padding:10%;
+	display: none;
+	color: white;
+	z-index: 1;
+
+}
 
 
