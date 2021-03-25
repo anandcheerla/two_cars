@@ -1,3 +1,5 @@
+// Author: Anand Kumar Cheerla
+
 
 //rock function for creating rock objects
 // attributes: x and y for coordinates
